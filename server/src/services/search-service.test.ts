@@ -156,6 +156,11 @@ describe("query parser", () => {
     const parsed = parseSearchQuery({}, known);
     assert.equal(parsed.q, "");
   });
+
+  it("maps demo=price to a first-offer failure", () => {
+    const parsed = parseSearchQuery({ q: "milk", demo: "price" }, known);
+    assert.equal(parsed.failFirstOffer, true);
+  });
 });
 
 describe("sanitizeQueryInput", () => {
@@ -247,6 +252,22 @@ describe("search", () => {
       fields: ["id", "name"],
     });
     assert.equal(provider.calls, 0);
+  });
+
+  it("fails the first offer when demo price is set", async () => {
+    const provider = new FakeProvider();
+    const result = await service(provider).search({
+      q: "milk",
+      sort: "popularity",
+      limit: 10,
+      offset: 0,
+      fields: ["id", "priceCents", "enrichment"],
+      failFirstOffer: true,
+    });
+    assert.equal(result.page.items[0]?.enrichment, "failed");
+    assert.ok(
+      result.page.items.slice(1).some((item) => item.enrichment === "ok"),
+    );
   });
 
   it("keeps a product when the offer fails", async () => {
