@@ -79,6 +79,21 @@ Suggestions appear after a short pause. A misspelling such as
 The result list shows loading while the search runs. After 4
 seconds it stops and offers a retry. The search box stays usable.
 
+## Demo states
+
+With the app running, open these links. They keep the rest of
+the page working.
+
+- Failed price on the first card:
+  http://localhost:5173/?demo=price
+- Error boundary on the first card:
+  http://localhost:5173/?demo=boundary
+
+  The first card is replaced with “This card hit an error
+  boundary” and Retry. Other cards stay visible.
+
+A random price can still fail on a normal search (about 1 in 8).
+
 ## Timing log
 
 Each search prints one line in the **server** terminal:
