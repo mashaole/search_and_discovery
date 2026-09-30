@@ -29,6 +29,7 @@ export type SearchQuery = {
   limit: number;
   offset: number;
   fields: string[];
+  failFirstOffer?: boolean;
 };
 
 export type SearchResult = {
