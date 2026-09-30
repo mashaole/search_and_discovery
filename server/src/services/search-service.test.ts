@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import type { Category, Offer, Product } from "@search/shared";
+import {
+  sanitizeQueryInput,
+  type Category,
+  type Offer,
+  type Product,
+} from "@search/shared";
 import { SearchService } from "./search-service.js";
 import { SuggestService } from "./suggest-service.js";
 import { parseSearchQuery } from "./query-parser.js";
@@ -150,6 +155,15 @@ describe("query parser", () => {
   it("allows an empty query to browse the catalog", () => {
     const parsed = parseSearchQuery({}, known);
     assert.equal(parsed.q, "");
+  });
+});
+
+describe("sanitizeQueryInput", () => {
+  it("strips special characters and extra spaces", () => {
+    assert.equal(sanitizeQueryInput("milk;"), "milk");
+    assert.equal(sanitizeQueryInput('say "hi"'), "say hi");
+    assert.equal(sanitizeQueryInput(" or 1=1"), "or 11");
+    assert.equal(sanitizeQueryInput("whole  milk"), "whole milk");
   });
 });
 
