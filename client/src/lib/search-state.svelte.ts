@@ -5,6 +5,7 @@ import {
   MIN_QUERY_LENGTH,
   QUERY_PATTERN,
   SEARCH_TIMEOUT_MS,
+  sanitizeQueryInput,
   type Category,
   type SearchResult,
   type SortOption,
@@ -61,7 +62,7 @@ function canFetchResults(): boolean {
 }
 
 export function handleQueryInput(value: string): void {
-  searchState.q = value.slice(0, MAX_QUERY_LENGTH);
+  searchState.q = sanitizeQueryInput(value);
   searchState.offset = 0;
   writeUrl();
   if (searchState.q.length === 0) {
@@ -126,7 +127,7 @@ export function handlePage(delta: number): void {
 }
 
 export function handlePickSuggestion(name: string): void {
-  searchState.q = name.slice(0, MAX_QUERY_LENGTH);
+  searchState.q = sanitizeQueryInput(name);
   searchState.suggestions = [];
   searchState.offset = 0;
   writeUrl();
@@ -149,7 +150,7 @@ export async function loadCategories(): Promise<void> {
 
 export function readUrl(): void {
   const params = new URLSearchParams(window.location.search);
-  searchState.q = (params.get("q") ?? "").slice(0, MAX_QUERY_LENGTH);
+  searchState.q = sanitizeQueryInput(params.get("q") ?? "");
   searchState.categoryId = params.get("categoryId") ?? "";
   const sort = params.get("sort");
   searchState.sort =
