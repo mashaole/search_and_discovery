@@ -6,7 +6,15 @@ There is no database.
 
 ## Setup
 
-Node.js 18 or later is required.
+Node.js 18 or later is required. This repo pins Node 20 in
+`.nvmrc`. If you use nvm:
+
+```bash
+nvm use
+npm run setup
+```
+
+Otherwise:
 
 ```bash
 npm run setup
@@ -55,8 +63,11 @@ npm test
 ## Search
 
 Open the app with an empty box to browse products across all
-categories. Type at least 2 characters to search. Use letters,
-numbers, and spaces between words. The box stops at 80 characters.
+categories. Type at least 2 characters to search. The box accepts
+only letters, numbers, and spaces between words. Special
+characters are ignored as you type, including paste. A copied
+link with a bad `q` is cleaned the same way. The box stops at 80
+characters. The API still rejects a query that breaks that rule.
 
 The first page is 10 products. You can raise the page size to 20
 or 40. The address bar holds `q`, `categoryId`, `sort`, `limit`,

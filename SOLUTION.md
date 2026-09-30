@@ -42,10 +42,12 @@ with empty offer fields.
 
 The screen uses `fetch` and `AbortController` so a new query
 cancels the previous request and a search stops at 4 seconds.
-Search state lives in one module and is written to the URL. The
-list shows loading. The form stays usable. Each reusable section
-sits in its own error boundary so a broken card cannot take down
-the page.
+Search state lives in one module and is written to the URL. An
+empty query browses the catalog, sorted by popularity or price.
+The search box strips special characters as you type. The API
+still allow-lists `q` before it scans. The list shows loading.
+The form stays usable. Each reusable section sits in its own
+error boundary so a broken card cannot take down the page.
 
 ### Layout and injection
 
