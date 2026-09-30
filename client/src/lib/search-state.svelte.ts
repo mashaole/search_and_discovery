@@ -26,6 +26,8 @@ export type ListStatus =
   | "error"
   | "timeout";
 
+export type DemoMode = "" | "price" | "boundary";
+
 const CARD_FIELDS = DEFAULT_SEARCH_FIELDS.join(",");
 
 function isValidQuery(q: string): boolean {
@@ -50,6 +52,7 @@ export const searchState = $state({
   status: "idle" as ListStatus,
   errorMessage: "",
   isSuggesting: false,
+  demo: "" as DemoMode,
 });
 
 let searchAbort: AbortController | undefined;
@@ -164,6 +167,9 @@ export function readUrl(): void {
   searchState.fields = fields
     ? fields.split(",")
     : [...DEFAULT_SEARCH_FIELDS];
+  const demo = params.get("demo");
+  searchState.demo =
+    demo === "price" || demo === "boundary" ? demo : "";
 }
 
 export function bindHistory(): void {
@@ -199,6 +205,9 @@ function writeUrl(): void {
     params.set("offset", String(searchState.offset));
   }
   params.set("fields", CARD_FIELDS);
+  if (searchState.demo) {
+    params.set("demo", searchState.demo);
+  }
   const next = params.toString();
   const url = next ? `?${next}` : window.location.pathname;
   writingUrl = true;
@@ -259,6 +268,9 @@ function runSearch(): void {
   params.set("limit", String(searchState.limit));
   params.set("offset", String(searchState.offset));
   params.set("fields", CARD_FIELDS);
+  if (searchState.demo === "price") {
+    params.set("demo", "price");
+  }
   fetchSearch(params, searchAbort.signal)
     .then((body) => {
       searchState.items = body.data?.items ?? [];

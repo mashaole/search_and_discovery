@@ -20,6 +20,7 @@
   import Select from "./components/select.svelte";
   import SuggestionList from "./components/suggestion-list.svelte";
   import ResultCard from "./components/result-card.svelte";
+  import CrashDemo from "./components/crash-demo.svelte";
   import PageControls from "./components/page-controls.svelte";
   import StatusMessage from "./components/status-message.svelte";
   import type { SortOption } from "@search/shared";
@@ -51,12 +52,21 @@
   function handleSort(value: string): void {
     handleSortChange(value as SortOption);
   }
+
+  function handleCardError(_error: unknown): void {
+    // Failed snippet is the demo UI; do not rethrow.
+  }
 </script>
 
 <main>
   <h1>Search and discovery</h1>
   <p class="lead">
     Find catalog products and see price, stock, and delivery.
+    Try a
+    <a href="/?demo=price">failed price</a>
+    or an
+    <a href="/?demo=boundary">error boundary</a>
+    on the first card.
   </p>
 
   <form
@@ -105,6 +115,13 @@
     />
   </SectionBoundary>
 
+  {#if searchState.demo === "boundary"}
+    <p class="demo-note" role="status">
+      Error boundary demo is on. The first card will fail on
+      purpose; the rest of the page stays usable.
+    </p>
+  {/if}
+
   <SectionBoundary>
     <StatusMessage
       status={searchState.status}
@@ -130,11 +147,24 @@
       />
     </SectionBoundary>
     <ul class="grid">
-      {#each searchState.items as item (item.id)}
+      {#each searchState.items as item, index (item.id)}
         <li>
-          <SectionBoundary>
-            <ResultCard {item} />
-          </SectionBoundary>
+          <svelte:boundary onerror={handleCardError}>
+            {#if searchState.demo === "boundary" && index === 0}
+              <CrashDemo />
+            {:else}
+              <ResultCard {item} />
+            {/if}
+            {#snippet failed(_error, reset)}
+              <div class="fallback" role="alert">
+                <p>
+                  This card hit an error boundary. The rest of
+                  the page still works.
+                </p>
+                <button type="button" onclick={reset}>Retry</button>
+              </div>
+            {/snippet}
+          </svelte:boundary>
         </li>
       {/each}
     </ul>
@@ -156,6 +186,39 @@
   .lead {
     margin: 0 0 1rem;
     color: #3d3d3d;
+  }
+
+  .lead a {
+    color: #1f4b3a;
+  }
+
+  .demo-note {
+    margin: 0 0 0.75rem;
+    padding: 0.65rem 0.8rem;
+    border: 1px solid #1f4b3a;
+    background: #eef4f1;
+    color: #1f4b3a;
+  }
+
+  .fallback {
+    padding: 0.9rem;
+    border: 1px solid #8a3b2a;
+    background: #f8efe9;
+    height: 100%;
+  }
+
+  .fallback p {
+    margin: 0 0 0.5rem;
+  }
+
+  .fallback button {
+    min-height: 2.75rem;
+    padding: 0.45rem 0.8rem;
+    border: 1px solid #1f4b3a;
+    background: #1f4b3a;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
   }
 
   .controls {
