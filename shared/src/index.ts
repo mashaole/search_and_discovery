@@ -114,3 +114,11 @@ export const MAX_LIMIT = 40;
 export const SEARCH_TIMEOUT_MS = 4000;
 export const OFFER_CACHE_MS = 5000;
 export const QUERY_PATTERN = /^[A-Za-z0-9]+(?: [A-Za-z0-9]+)*$/;
+
+export function sanitizeQueryInput(raw: string): string {
+  return raw
+    .replace(/[^A-Za-z0-9 ]/g, "")
+    .replace(/ {2,}/g, " ")
+    .replace(/^ +/, "")
+    .slice(0, MAX_QUERY_LENGTH);
+}
