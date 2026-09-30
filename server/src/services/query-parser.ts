@@ -25,6 +25,7 @@ const SEARCH_KEYS = [
   "limit",
   "offset",
   "fields",
+  "demo",
 ] as const;
 
 const SUGGEST_KEYS = ["q", "fields"] as const;
@@ -50,7 +51,8 @@ export function parseSearchQuery(
     SEARCH_RESULT_FIELDS,
     DEFAULT_SEARCH_FIELDS,
   );
-  return { q, categoryId, sort, limit, offset, fields };
+  const failFirstOffer = parseDemo(query.demo);
+  return { q, categoryId, sort, limit, offset, fields, failFirstOffer };
 }
 
 export function parseSuggestQuery(
@@ -109,6 +111,17 @@ function readOptionalString(value: unknown): string | undefined {
     return undefined;
   }
   return text;
+}
+
+function parseDemo(value: unknown): boolean {
+  if (value === undefined) {
+    return false;
+  }
+  const text = readString(value);
+  if (text === "price") {
+    return true;
+  }
+  throw unknownField("demo", ["price"]);
 }
 
 function parseSort(value: unknown): SortOption {

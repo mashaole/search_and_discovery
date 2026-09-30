@@ -82,7 +82,10 @@ export class SearchService {
     let failedCount = 0;
 
     if (query.sort === "price" && needsOffer) {
-      const enriched = await this.enrichAll(ranked);
+      const enriched = await this.enrichAll(
+        ranked,
+        query.failFirstOffer === true,
+      );
       failedCount = enriched.failedCount;
       enriched.rows.sort((left, right) =>
         compareByFitThenSort(left, right, "price"),
@@ -102,7 +105,10 @@ export class SearchService {
 
     slice = ranked.slice(query.offset, query.offset + query.limit);
     if (needsOffer) {
-      const enriched = await this.enrichAll(slice);
+      const enriched = await this.enrichAll(
+        slice,
+        query.failFirstOffer === true,
+      );
       failedCount = enriched.failedCount;
       slice = enriched.rows;
     }
@@ -141,12 +147,20 @@ export class SearchService {
     return matched;
   }
 
-  private async enrichAll(rows: RankedProduct[]): Promise<{
+  private async enrichAll(
+    rows: RankedProduct[],
+    failFirstOffer: boolean,
+  ): Promise<{
     rows: RankedProduct[];
     failedCount: number;
   }> {
     const settled = await Promise.allSettled(
-      rows.map((row) => this.loadOffer(row.product.id)),
+      rows.map((row, index) => {
+        if (failFirstOffer && index === 0) {
+          return Promise.reject(new Error("demo price fail"));
+        }
+        return this.loadOffer(row.product.id);
+      }),
     );
     let failedCount = 0;
     const next: RankedProduct[] = [];
