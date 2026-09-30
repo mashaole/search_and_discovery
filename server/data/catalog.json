@@ -1,0 +1,291 @@
+{
+  "categories": [
+    { "id": "bakery", "name": "bakery" },
+    { "id": "dairy", "name": "dairy" },
+    { "id": "produce", "name": "produce" },
+    { "id": "pantry", "name": "pantry" },
+    { "id": "drinks", "name": "drinks" }
+  ],
+  "products": [
+    {
+      "id": "p01",
+      "name": "Sourdough Loaf",
+      "description": "Crusty loaf baked daily.",
+      "categoryId": "bakery",
+      "popularity": 88
+    },
+    {
+      "id": "p02",
+      "name": "Croissant",
+      "description": "Butter pastry, flaky layers.",
+      "categoryId": "bakery",
+      "popularity": 91
+    },
+    {
+      "id": "p03",
+      "name": "Bagel",
+      "description": "Chewy bagel, sesame top.",
+      "categoryId": "bakery",
+      "popularity": 74
+    },
+    {
+      "id": "p04",
+      "name": "Ciabatta",
+      "description": "Open crumb, olive oil dough.",
+      "categoryId": "bakery",
+      "popularity": 61
+    },
+    {
+      "id": "p05",
+      "name": "Banana Bread",
+      "description": "Sweet loaf with ripe banana.",
+      "categoryId": "bakery",
+      "popularity": 79
+    },
+    {
+      "id": "p06",
+      "name": "Dinner Roll",
+      "description": "Soft roll for the table.",
+      "categoryId": "bakery",
+      "popularity": 55
+    },
+    {
+      "id": "p07",
+      "name": "Focaccia",
+      "description": "Herb oil, sea salt.",
+      "categoryId": "bakery",
+      "popularity": 70
+    },
+    {
+      "id": "p08",
+      "name": "Pretzel",
+      "description": "Salted twist, warm.",
+      "categoryId": "bakery",
+      "popularity": 64
+    },
+    {
+      "id": "p09",
+      "name": "Whole Milk",
+      "description": "Fresh full cream milk.",
+      "categoryId": "dairy",
+      "popularity": 96
+    },
+    {
+      "id": "p10",
+      "name": "Cheddar Cheese",
+      "description": "Mature cheddar block.",
+      "categoryId": "dairy",
+      "popularity": 83
+    },
+    {
+      "id": "p11",
+      "name": "Greek Yogurt",
+      "description": "Thick plain yogurt.",
+      "categoryId": "dairy",
+      "popularity": 77
+    },
+    {
+      "id": "p12",
+      "name": "Salted Butter",
+      "description": "Cultured butter, salted.",
+      "categoryId": "dairy",
+      "popularity": 85
+    },
+    {
+      "id": "p13",
+      "name": "Cottage Cheese",
+      "description": "Mild curds, high protein.",
+      "categoryId": "dairy",
+      "popularity": 52
+    },
+    {
+      "id": "p14",
+      "name": "Cream Cheese",
+      "description": "Smooth spread, mild.",
+      "categoryId": "dairy",
+      "popularity": 68
+    },
+    {
+      "id": "p15",
+      "name": "Parmesan",
+      "description": "Hard cheese, grated ready.",
+      "categoryId": "dairy",
+      "popularity": 71
+    },
+    {
+      "id": "p16",
+      "name": "Oat Milk",
+      "description": "Barista oat drink.",
+      "categoryId": "dairy",
+      "popularity": 73
+    },
+    {
+      "id": "p17",
+      "name": "Banana",
+      "description": "Ripe yellow bananas.",
+      "categoryId": "produce",
+      "popularity": 94
+    },
+    {
+      "id": "p18",
+      "name": "Avocado",
+      "description": "Ready to eat, creamy.",
+      "categoryId": "produce",
+      "popularity": 86
+    },
+    {
+      "id": "p19",
+      "name": "Tomato",
+      "description": "Vine tomatoes, firm.",
+      "categoryId": "produce",
+      "popularity": 80
+    },
+    {
+      "id": "p20",
+      "name": "Spinach",
+      "description": "Baby leaf spinach.",
+      "categoryId": "produce",
+      "popularity": 66
+    },
+    {
+      "id": "p21",
+      "name": "Apple",
+      "description": "Crisp red apples.",
+      "categoryId": "produce",
+      "popularity": 89
+    },
+    {
+      "id": "p22",
+      "name": "Carrot",
+      "description": "Sweet bunched carrots.",
+      "categoryId": "produce",
+      "popularity": 62
+    },
+    {
+      "id": "p23",
+      "name": "Broccoli",
+      "description": "Fresh green florets.",
+      "categoryId": "produce",
+      "popularity": 58
+    },
+    {
+      "id": "p24",
+      "name": "Lemon",
+      "description": "Bright citrus, juicy.",
+      "categoryId": "produce",
+      "popularity": 69
+    },
+    {
+      "id": "p25",
+      "name": "Burger",
+      "description": "Beef patty, ready to cook.",
+      "categoryId": "pantry",
+      "popularity": 92
+    },
+    {
+      "id": "p26",
+      "name": "Pasta",
+      "description": "Durum wheat spaghetti.",
+      "categoryId": "pantry",
+      "popularity": 81
+    },
+    {
+      "id": "p27",
+      "name": "Olive Oil",
+      "description": "Extra virgin, cold pressed.",
+      "categoryId": "pantry",
+      "popularity": 76
+    },
+    {
+      "id": "p28",
+      "name": "Rice",
+      "description": "Long grain white rice.",
+      "categoryId": "pantry",
+      "popularity": 84
+    },
+    {
+      "id": "p29",
+      "name": "Black Beans",
+      "description": "Canned beans, rinsed ready.",
+      "categoryId": "pantry",
+      "popularity": 54
+    },
+    {
+      "id": "p30",
+      "name": "Tomato Sauce",
+      "description": "Simple pasta sauce.",
+      "categoryId": "pantry",
+      "popularity": 72
+    },
+    {
+      "id": "p31",
+      "name": "Peanut Butter",
+      "description": "Smooth roast peanut spread.",
+      "categoryId": "pantry",
+      "popularity": 78
+    },
+    {
+      "id": "p32",
+      "name": "Honey",
+      "description": "Wildflower honey.",
+      "categoryId": "pantry",
+      "popularity": 67
+    },
+    {
+      "id": "p33",
+      "name": "Orange Juice",
+      "description": "Not from concentrate.",
+      "categoryId": "drinks",
+      "popularity": 87
+    },
+    {
+      "id": "p34",
+      "name": "Sparkling Water",
+      "description": "Plain sparkling water.",
+      "categoryId": "drinks",
+      "popularity": 75
+    },
+    {
+      "id": "p35",
+      "name": "Green Tea",
+      "description": "Loose leaf green tea.",
+      "categoryId": "drinks",
+      "popularity": 59
+    },
+    {
+      "id": "p36",
+      "name": "Cola",
+      "description": "Classic cola, chilled.",
+      "categoryId": "drinks",
+      "popularity": 90
+    },
+    {
+      "id": "p37",
+      "name": "Coffee Beans",
+      "description": "Medium roast beans.",
+      "categoryId": "drinks",
+      "popularity": 82
+    },
+    {
+      "id": "p38",
+      "name": "Apple Cider",
+      "description": "Pressed apple drink.",
+      "categoryId": "drinks",
+      "popularity": 57
+    },
+    {
+      "id": "p39",
+      "name": "Ginger Ale",
+      "description": "Ginger soda, dry finish.",
+      "categoryId": "drinks",
+      "popularity": 53
+    },
+    {
+      "id": "p40",
+      "name": "Coconut Water",
+      "description": "Pure coconut water.",
+      "categoryId": "drinks",
+      "popularity": 60
+    }
+  ]
+}
